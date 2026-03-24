@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -29,9 +30,14 @@ jobs:
           security create-keychain -p actions build.keychain
           security default-keychain -s build.keychain
           security unlock-keychain -p actions build.keychain
-          security import /tmp/certificate.p12 -k build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          security set-keychain-settings -t 3600 -l build.keychain
+          security import /tmp/certificate.p12 -k build.keychain -P "$CERTIFICATE_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k actions build.keychain
+          security find-identity -v -p codesigning build.keychain
           rm /tmp/certificate.p12
+
+      - name: Unlock keychain before build
+        run: security unlock-keychain -p actions build.keychain
 
       - name: Build, Sign & Notarize
         env:
@@ -41,10 +47,12 @@ jobs:
         run: npm run build:mac
 
       - name: Upload DMG
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ScreenCut-Mac
           path: release/*/ScreenCut-Mac-*.dmg
+          if-no-files-found: warn
 
       - name: Upload to Release
         if: startsWith(github.ref, 'refs/tags/')
