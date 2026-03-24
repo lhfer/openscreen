@@ -79,7 +79,7 @@
 	},
 	"links": {
 		"reportBug": "Report Bug",
-		"starOnGithub": "Star on GitHub"
+		"about": "About"
 	},
 	"imageUpload": {
 		"invalidFileType": "Invalid file type",

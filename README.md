@@ -1,99 +1,75 @@
-> [!WARNING]
-> This is very much in beta and might be buggy here and there (but hope you have a good experience!).
-
 <p align="center">
-  <img src="public/openscreen.png" alt="OpenScreen Logo" width="64" />
-  <br />
-  <br />
-  <a href="https://deepwiki.com/siddharthvaddem/openscreen">
-    <img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" />
-  </a>
+  <img src="icons/icons/png/256x256.png" alt="ScreenCut" width="128" />
 </p>
 
-# <p align="center">OpenScreen</p>
+<h1 align="center">ScreenCut 屏幕剪辑</h1>
 
-<p align="center"><strong>OpenScreen is your free, open-source alternative to Screen Studio (sort of).</strong></p>
-
-If you don't want to pay $29/month for Screen Studio but want a much simpler version that does what most people seem to need, making beautiful product demos and walkthroughs, here's a free-to-use app for you. OpenScreen does not offer all Screen Studio features, but covers the basics well!
-
-Screen Studio is an awesome product and this is definitely not a 1:1 clone. OpenScreen is a much simpler take, just the basics for folks who want control and don't want to pay. If you need all the fancy features, your best bet is to support Screen Studio (they really do a great job, haha). But if you just want something free (no gotchas) and open, this project does the job!
-
-OpenScreen is 100% free for personal and commercial use. Use it, modify it, distribute it. (Just be cool 😁 and give a shoutout if you feel like it !)
+<p align="center">精致录屏，轻松创作</p>
 
 <p align="center">
-	<img src="public/preview3.png" alt="OpenScreen App Preview 3" style="height: 320px; margin-right: 12px;" />
-	<img src="public/preview4.png" alt="OpenScreen App Preview 4" style="height: 320px; margin-right: 12px;" />
+  <a href="https://github.com/lhfer/openscreen/releases">下载最新版</a> ·
+  <a href="https://www.xiaohongshu.com/user/profile/651465e9000000002402f600">反馈问题</a> ·
+  <a href="https://github.com/siddharthvaddem/openscreen">上游项目</a>
 </p>
-
-## Core Features
-- Record your whole screen or specific windows.
-- Add Automatic zooms or manual zooms (customizable depth levels).
-- Record microphone audio and system audio capture.
-- Customize the duration and position of zooms however you please.
-- Crop video recordings to hide parts.
-- Choose between wallpapers, solid colors, gradients or a custom background.
-- Motion blur for smoother pan and zoom effects.
-- Add annotations (text, arrows, images).
-- Trim sections of the clip.
-- Customize speed at different segments.
-- Export in different aspect ratios and resolutions.
-
-## Installation
-
-Download the latest installer for your platform from the [GitHub Releases](https://github.com/siddharthvaddem/openscreen/releases) page.
-
-### macOS
-
-If you encounter issues with macOS Gatekeeper blocking the app (since it does not come with a developer certificate), you can bypass this by running the following command in your terminal after installation:
-
-```bash
-xattr -rd com.apple.quarantine /Applications/Openscreen.app
-```
-
-Note: Give your terminal Full Disk Access in **System Settings > Privacy & Security** to grant you access and then run the above command.
-
-After running this command, proceed to **System Preferences > Security & Privacy** to grant the necessary permissions for "screen recording" and "accessibility". Once permissions are granted, you can launch the app.
-
-### Linux
-
-Download the `.AppImage` file from the releases page. Make it executable and run:
-
-```bash
-chmod +x Openscreen-Linux-*.AppImage
-./Openscreen-Linux-*.AppImage
-```
-
-You may need to grant screen recording permissions depending on your desktop environment.
-
-**Note:** If the app fails to launch due to a "sandbox" error, run it with --no-sandbox:
-```bash
-./Openscreen-Linux-*.AppImage --no-sandbox
-```
-
-### Limitations
-
-System audio capture relies on Electron's [desktopCapturer](https://www.electronjs.org/docs/latest/api/desktop-capturer) and has some platform-specific quirks:
-
-- **macOS**: Requires macOS 13+. On macOS 14.2+ you'll be prompted to grant audio capture permission. macOS 12 and below does not support system audio (mic still work).
-- **Windows**: Works out of the box.
-- **Linux**: Needs PipeWire (default on Ubuntu 22.04+, Fedora 34+). Older PulseAudio-only setups may not support system audio (mic should still works).
-
-## Built with
-- Electron
-- React
-- TypeScript
-- Vite
-- PixiJS
-- dnd-timeline
 
 ---
 
-_I'm new to open source, idk what I'm doing lol. If something is wrong please raise an issue 🙏_
+## 关于
 
-## Contributing
+ScreenCut 是一款面向中文用户的 macOS 屏幕录制与编辑工具，类似 [Screen Studio](https://screen.studio/) 的开源平替方案。
 
-Contributions are welcome! If you’d like to help out or see what’s currently being worked on, take a look at the open issues and the [project roadmap](https://github.com/users/siddharthvaddem/projects/3) to understand the current direction of the project and find ways to contribute.
+本项目基于 **[OpenScreen](https://github.com/siddharthvaddem/openscreen)** 开源项目进行中文本土化与定制开发。衷心感谢 OpenScreen 团队的出色工作和开源精神 —— 我们只是站在巨人肩膀上的小小改造工。
 
-## License
+## 功能特性
 
-This project is licensed under the [MIT License](./LICENSE). By using this software, you agree that the authors are not liable for any issues, damages, or claims arising from its use.
+- 🎬 屏幕 / 窗口 / 区域录制
+- 🔍 智能缩放（自动跟随光标）
+- ✂️ 时间轴裁剪与变速
+- 🎨 背景美化（壁纸 / 纯色 / 渐变）
+- 💫 动感模糊 + 阴影 + 圆角效果
+- 📝 文字 / 图片 / 箭头标注
+- 📹 摄像头画中画
+- 📦 导出 MP4 / GIF
+
+## 本地化改动
+
+在 OpenScreen 基础上的改动：
+
+- 🇨🇳 完全中文本土化：所有界面文案、菜单、提示信息
+- 🎨 品牌配色定制
+- 🖼️ 自定义应用图标
+- 🍎 macOS 原生菜单栏中文化
+- ⌨️ 快捷键面板中文化
+- 🐛 裁剪指南 i18n 修复
+- 📱 源选择窗口拖拽支持
+- ✨ 导出体验优化
+
+## 安装
+
+前往 **[Releases](https://github.com/lhfer/openscreen/releases)** 下载最新的 DMG 安装包。
+
+> 首次打开需要在「系统设置 → 隐私与安全性 → 屏幕录制」中授权。
+
+## 开发
+
+```bash
+npm install     # 安装依赖
+npm run dev     # 开发模式
+npm run build:mac  # 构建 macOS 应用
+```
+
+## 反馈
+
+使用中遇到问题或有建议，欢迎联系：
+
+- 📕 [小红书](https://www.xiaohongshu.com/user/profile/651465e9000000002402f600)
+- 🐛 [GitHub Issues](https://github.com/lhfer/openscreen/issues)
+
+## 致谢
+
+- **[OpenScreen](https://github.com/siddharthvaddem/openscreen)** — 本项目的上游开源项目，MIT License
+- **[Screen Studio](https://screen.studio/)** — 产品灵感来源
+
+## 许可证
+
+[MIT License](LICENSE) — 与上游 OpenScreen 项目保持一致。
