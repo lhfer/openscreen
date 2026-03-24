@@ -42,27 +42,19 @@ export default function App() {
 				);
 			default:
 				return (
-					<div className="w-full h-full bg-[#0a0a0f] text-white flex flex-col items-center justify-center gap-6">
-						<div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#4A90E2] to-[#6BCF9F] flex items-center justify-center shadow-lg shadow-[#4A90E2]/20">
-							<svg
-								width="40"
-								height="40"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							>
-								<circle cx="12" cy="12" r="10" />
-								<polygon points="10 8 16 12 10 16 10 8" />
-							</svg>
-						</div>
+					<div className="w-full h-full bg-[#0a0a0f] text-white flex flex-col items-center justify-center gap-8">
+						<img
+							src="icons/icons/png/256x256.png"
+							alt="ScreenCut"
+							className="w-24 h-24 rounded-2xl shadow-lg"
+							draggable={false}
+						/>
 						<div className="text-center">
-							<h1 className="text-2xl font-bold bg-gradient-to-r from-[#4A90E2] to-[#6BCF9F] bg-clip-text text-transparent">
-								ScreenCut
-							</h1>
-							<p className="text-sm text-white/40 mt-2">屏幕剪辑 — 精致录屏，轻松创作</p>
+							<h1 className="text-3xl font-bold text-white">ScreenCut</h1>
+							<p className="text-base text-white/50 mt-2">屏幕剪辑 — 精致录屏，轻松创作</p>
+							<p className="text-xs text-white/20 mt-6">
+								基于 <span className="text-white/30">OpenScreen</span> 开源项目
+							</p>
 						</div>
 					</div>
 				);

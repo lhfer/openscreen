@@ -79,7 +79,7 @@
 	},
 	"links": {
 		"reportBug": "Reportar error",
-		"starOnGithub": "Dar estrella en GitHub"
+		"about": "Acerca de"
 	},
 	"imageUpload": {
 		"invalidFileType": "Tipo de archivo no válido",

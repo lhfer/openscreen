@@ -79,7 +79,7 @@
 	},
 	"links": {
 		"reportBug": "反馈问题",
-		"starOnGithub": "支持项目"
+		"about": "应用说明"
 	},
 	"imageUpload": {
 		"invalidFileType": "不支持的文件格式",

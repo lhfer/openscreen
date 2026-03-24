@@ -1,14 +1,14 @@
 import Block from "@uiw/react-color-block";
 import {
-	Bug,
 	Crop,
 	Download,
 	Film,
 	Image,
+	Info,
 	Lock,
+	MessageCircle,
 	Palette,
 	Sparkles,
-	Star,
 	Trash2,
 	Unlock,
 	Upload,
@@ -1179,23 +1179,25 @@ export function SettingsPanel({
 						type="button"
 						onClick={() => {
 							window.electronAPI?.openExternalUrl(
-								"https://github.com/xiaoli/screencut/issues/new/choose",
+								"https://www.xiaohongshu.com/user/profile/651465e9000000002402f600",
 							);
 						}}
 						className="flex-1 flex items-center justify-center gap-1.5 text-[11px] text-slate-500 hover:text-slate-300 py-1.5 transition-colors"
 					>
-						<Bug className="w-3 h-3 text-[#4A90E2]" />
+						<MessageCircle className="w-3 h-3 text-[#FF8C42]" />
 						{t("links.reportBug")}
 					</button>
 					<button
 						type="button"
 						onClick={() => {
-							window.electronAPI?.openExternalUrl("https://github.com/xiaoli/screencut");
+							window.electronAPI?.openExternalUrl(
+								"https://github.com/lhfer/openscreen/tree/screencut-zh",
+							);
 						}}
 						className="flex-1 flex items-center justify-center gap-1.5 text-[11px] text-slate-500 hover:text-slate-300 py-1.5 transition-colors"
 					>
-						<Star className="w-3 h-3 text-yellow-400" />
-						{t("links.starOnGithub")}
+						<Info className="w-3 h-3 text-[#4A90E2]" />
+						{t("links.about")}
 					</button>
 				</div>
 			</div>
