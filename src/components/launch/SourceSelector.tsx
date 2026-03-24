@@ -65,7 +65,7 @@ export function SourceSelector() {
 				style={{ minHeight: "100vh" }}
 			>
 				<div className="text-center">
-					<div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#34B27B] mx-auto mb-2" />
+					<div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#4A90E2] mx-auto mb-2" />
 					<p className="text-xs text-zinc-400">{t("sourceSelector.loading")}</p>
 				</div>
 			</div>
@@ -106,7 +106,14 @@ export function SourceSelector() {
 
 	return (
 		<div className={`min-h-screen flex flex-col ${styles.glassContainer}`}>
-			<div className="flex-1 flex flex-col w-full px-4 pt-4">
+			{/* Draggable title bar */}
+			<div
+				className="h-8 flex-shrink-0 flex items-center justify-center cursor-grab active:cursor-grabbing"
+				style={{ WebkitAppRegion: "drag" } as React.CSSProperties}
+			>
+				<div className="w-10 h-1 rounded-full bg-white/20" />
+			</div>
+			<div className="flex-1 flex flex-col w-full px-4 pt-0">
 				<Tabs
 					defaultValue={screenSources.length === 0 ? "windows" : "screens"}
 					className="flex-1 flex flex-col"
@@ -154,7 +161,7 @@ export function SourceSelector() {
 				<Button
 					onClick={handleShare}
 					disabled={!selectedSource}
-					className="px-5 py-1 text-xs bg-[#34B27B] text-white hover:bg-[#34B27B]/80 disabled:opacity-30 disabled:bg-zinc-700 rounded-full"
+					className="px-5 py-1 text-xs bg-[#4A90E2] text-white hover:bg-[#4A90E2]/80 disabled:opacity-30 disabled:bg-zinc-700 rounded-full"
 				>
 					{tc("actions.share")}
 				</Button>

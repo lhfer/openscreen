@@ -1,9 +1,9 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  "appId": "com.siddharthvaddem.openscreen",
+  "appId": "com.xiaoli.screencut",
   "asar": true,
-  "productName": "Openscreen",
+  "productName": "ScreenCut",
   "npmRebuild": true,
   "buildDependenciesFromSource": true,
   "compression": "normal",
@@ -38,9 +38,10 @@
     "icon": "icons/icons/mac/icon.icns",
     "artifactName": "${productName}-Mac-${arch}-${version}-Installer.${ext}",
     "extendInfo": {
-      "NSAudioCaptureUsageDescription": "OpenScreen needs audio capture permission to record system audio.",
-      "NSMicrophoneUsageDescription": "OpenScreen needs microphone access to record voice audio.",
-      "NSCameraUsageDescription": "OpenScreen needs camera access to record webcam video.",
+      "NSScreenCaptureUsageDescription": "ScreenCut 需要屏幕录制权限来录制你的屏幕。",
+      "NSAudioCaptureUsageDescription": "ScreenCut 需要音频捕获权限来录制系统声音。",
+      "NSMicrophoneUsageDescription": "ScreenCut 需要麦克风权限来录制语音。",
+      "NSCameraUsageDescription": "ScreenCut 需要摄像头权限来录制画面。",
       "NSCameraUseContinuityCameraDeviceType": true,
       "com.apple.security.device.audio-input": true
     }

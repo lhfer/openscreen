@@ -8,28 +8,41 @@
 		"failedToSaveVideo": "保存视频失败",
 		"exportFailed": "导出失败",
 		"exportFailedWithError": "导出失败：{{error}}",
-		"failedToSaveExport": "保存导出文件失败",
-		"failedToSaveExportedVideo": "保存导出的视频失败",
-		"failedToRevealInFolder": "在文件夹中显示时出错：{{error}}"
+		"failedToSaveExport": "保存失败",
+		"failedToSaveExportedVideo": "保存导出视频失败",
+		"failedToRevealInFolder": "打开文件夹时出错：{{error}}",
+		"failedToLoadProject": "加载项目失败",
+		"invalidProjectFormat": "无效的项目文件",
+		"failedToLoadVideo": "视频加载失败",
+		"unknownError": "未知错误"
 	},
 	"export": {
-		"canceled": "导出已取消",
-		"exportedSuccessfully": "{{format}} 导出成功"
+		"canceled": "已取消导出",
+		"exportedSuccessfully": "{{format}} 导出成功",
+		"showInFolder": "在访达中显示"
 	},
 	"project": {
-		"saveCanceled": "项目保存已取消",
+		"saveCanceled": "已取消保存",
 		"failedToSave": "保存项目失败",
 		"savedTo": "项目已保存至 {{path}}",
 		"failedToLoad": "加载项目失败",
-		"invalidFormat": "无效的项目文件格式",
-		"loadedFrom": "项目已从 {{path}} 加载"
+		"invalidFormat": "无效的项目文件",
+		"loadedFrom": "已加载项目：{{path}}"
 	},
 	"recording": {
-		"failedCameraAccess": "请求摄像头权限失败。",
-		"cameraBlocked": "摄像头权限已被阻止。请在系统设置中启用以使用摄像头。",
-		"systemAudioUnavailable": "系统音频不可用。将在无系统音频的情况下录制。",
-		"microphoneDenied": "麦克风权限被拒绝。录制将继续，但不包含音频。",
-		"cameraDenied": "摄像头权限被拒绝。录制将继续，但不包含摄像头画面。",
-		"permissionDenied": "录屏权限被拒绝。请允许屏幕录制。"
+		"failedCameraAccess": "无法获取摄像头权限。",
+		"cameraBlocked": "摄像头权限已被禁止，请在系统设置中开启。",
+		"systemAudioUnavailable": "系统音频不可用，将在无系统音频的情况下录制。",
+		"microphoneDenied": "麦克风权限被拒绝，录制将没有声音。",
+		"cameraDenied": "摄像头权限被拒绝，录制将没有摄像头画面。",
+		"permissionDenied": "需要录屏权限才能继续，请在系统设置中允许。"
+	},
+	"tray": {
+		"appName": "ScreenCut",
+		"recording": "正在录制：{{source}}"
+	},
+	"formats": {
+		"video": "视频",
+		"gif": "GIF"
 	}
 }

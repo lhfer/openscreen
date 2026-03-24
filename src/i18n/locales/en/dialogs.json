@@ -27,10 +27,9 @@
 		"triggerLabel": "How trimming works",
 		"title": "How Trimming Works",
 		"description": "Understanding how to cut out unwanted parts of your video.",
-		"explanation": "The Trim tool works by defining the segments you want to",
+		"explanation": "The Trim tool works by defining the segments you want to ",
 		"explanationRemove": "remove",
-		"explanationCovered": "covered",
-		"explanationEnd": "by a red trim segment will be cut out when you export.",
+		"explanationEnd": ". Parts covered by a red trim segment will be cut out when you export.",
 		"visualExample": "Visual Example",
 		"removed": "REMOVED",
 		"kept": "Kept",
@@ -57,12 +56,12 @@
 		"saveGif": "Save Exported GIF",
 		"saveVideo": "Save Exported Video",
 		"selectVideo": "Select Video File",
-		"saveProject": "Save OpenScreen Project",
-		"openProject": "Open OpenScreen Project",
+		"saveProject": "Save ScreenCut Project",
+		"openProject": "Open ScreenCut Project",
 		"gifImage": "GIF Image",
 		"mp4Video": "MP4 Video",
 		"videoFiles": "Video Files",
-		"openscreenProject": "OpenScreen Project",
+		"openscreenProject": "ScreenCut Project",
 		"allFiles": "All Files"
 	}
 }

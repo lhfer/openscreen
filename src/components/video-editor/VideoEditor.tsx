@@ -130,6 +130,7 @@ export default function VideoEditor() {
 
 	const { shortcuts, isMac } = useShortcuts();
 	const t = useScopedT("editor");
+	const tEditor = useScopedT("editor");
 	const ts = useScopedT("settings");
 	const { locale, setLocale } = useI18n();
 
@@ -472,17 +473,17 @@ export default function VideoEditor() {
 		}
 
 		if (!result.success) {
-			toast.error(result.message || "Failed to load project");
+			toast.error(result.message || tEditor("errors.failedToLoadProject"));
 			return;
 		}
 
 		const restored = await applyLoadedProject(result.project, result.path ?? null);
 		if (!restored) {
-			toast.error("Invalid project file format");
+			toast.error(tEditor("errors.invalidProjectFormat"));
 			return;
 		}
 
-		toast.success(`Project loaded from ${result.path}`);
+		toast.success(tEditor("project.loadedFrom", { path: result.path ?? "" }));
 	}, [applyLoadedProject]);
 
 	useEffect(() => {
@@ -977,35 +978,38 @@ export default function VideoEditor() {
 		}
 	}, [selectedSpeedId, speedRegions]);
 
-	const handleShowExportedFile = useCallback(async (filePath: string) => {
-		try {
-			const result = await window.electronAPI.revealInFolder(filePath);
-			if (!result.success) {
-				const errorMessage = result.error || result.message || "Failed to reveal item in folder.";
-				console.error("Failed to reveal in folder:", errorMessage);
-				toast.error(errorMessage);
+	const handleShowExportedFile = useCallback(
+		async (filePath: string) => {
+			try {
+				const result = await window.electronAPI.revealInFolder(filePath);
+				if (!result.success) {
+					const errorMessage = result.error || result.message || "Failed to reveal item in folder.";
+					console.error("Failed to reveal in folder:", errorMessage);
+					toast.error(errorMessage);
+				}
+			} catch (error) {
+				const errorMessage = String(error);
+				console.error("Error calling revealInFolder IPC:", errorMessage);
+				toast.error(tEditor("errors.failedToRevealInFolder", { error: errorMessage }));
 			}
-		} catch (error) {
-			const errorMessage = String(error);
-			console.error("Error calling revealInFolder IPC:", errorMessage);
-			toast.error(`Error revealing in folder: ${errorMessage}`);
-		}
-	}, []);
+		},
+		[tEditor],
+	);
 
 	const handleExportSaved = useCallback(
-		(formatLabel: "GIF" | "Video", filePath: string) => {
+		(formatLabel: string, filePath: string) => {
 			setExportedFilePath(filePath);
-			toast.success(`${formatLabel} exported successfully`, {
+			toast.success(tEditor("export.exportedSuccessfully", { format: formatLabel }), {
 				description: filePath,
 				action: {
-					label: "Show in Folder",
+					label: tEditor("export.showInFolder"),
 					onClick: () => {
 						void handleShowExportedFile(filePath);
 					},
 				},
 			});
 		},
-		[handleShowExportedFile],
+		[handleShowExportedFile, tEditor],
 	);
 
 	const handleSaveUnsavedExport = useCallback(async () => {
@@ -1016,29 +1020,32 @@ export default function VideoEditor() {
 				unsavedExport.fileName,
 			);
 			if (saveResult.canceled) {
-				toast.info("Export canceled");
+				toast.info(tEditor("export.canceled"));
 			} else if (saveResult.success && saveResult.path) {
 				setUnsavedExport(null);
-				handleExportSaved(unsavedExport.format === "gif" ? "GIF" : "Video", saveResult.path);
+				handleExportSaved(
+					unsavedExport.format === "gif" ? tEditor("formats.gif") : tEditor("formats.video"),
+					saveResult.path,
+				);
 			} else {
-				toast.error(saveResult.message || "Failed to save export");
+				toast.error(saveResult.message || tEditor("errors.failedToSaveExport"));
 			}
 		} catch (error) {
 			console.error("Error saving unsaved export:", error);
-			toast.error("Failed to save exported video");
+			toast.error(tEditor("errors.failedToSaveExportedVideo"));
 		}
-	}, [unsavedExport, handleExportSaved]);
+	}, [unsavedExport, handleExportSaved, tEditor]);
 
 	const handleExport = useCallback(
 		async (settings: ExportSettings) => {
 			if (!videoPath) {
-				toast.error("No video loaded");
+				toast.error(tEditor("errors.noVideoLoaded"));
 				return;
 			}
 
 			const video = videoPlaybackRef.current?.video;
 			if (!video) {
-				toast.error("Video not ready");
+				toast.error(tEditor("errors.videoNotReady"));
 				return;
 			}
 
@@ -1110,13 +1117,13 @@ export default function VideoEditor() {
 
 						if (saveResult.canceled) {
 							setUnsavedExport({ arrayBuffer, fileName, format: "gif" });
-							toast.info("Export canceled");
+							toast.info(tEditor("export.canceled"));
 						} else if (saveResult.success && saveResult.path) {
 							setUnsavedExport(null);
-							handleExportSaved("GIF", saveResult.path);
+							handleExportSaved(tEditor("formats.gif"), saveResult.path);
 						} else {
-							setExportError(saveResult.message || "Failed to save GIF");
-							toast.error(saveResult.message || "Failed to save GIF");
+							setExportError(saveResult.message || tEditor("errors.failedToSaveGif"));
+							toast.error(saveResult.message || tEditor("errors.failedToSaveGif"));
 						}
 					} else {
 						setExportError(result.error || "GIF export failed");
@@ -1241,17 +1248,17 @@ export default function VideoEditor() {
 
 						if (saveResult.canceled) {
 							setUnsavedExport({ arrayBuffer, fileName, format: "mp4" });
-							toast.info("Export canceled");
+							toast.info(tEditor("export.canceled"));
 						} else if (saveResult.success && saveResult.path) {
 							setUnsavedExport(null);
-							handleExportSaved("Video", saveResult.path);
+							handleExportSaved(tEditor("formats.video"), saveResult.path);
 						} else {
-							setExportError(saveResult.message || "Failed to save video");
-							toast.error(saveResult.message || "Failed to save video");
+							setExportError(saveResult.message || tEditor("errors.failedToSaveVideo"));
+							toast.error(saveResult.message || tEditor("errors.failedToSaveVideo"));
 						}
 					} else {
-						setExportError(result.error || "Export failed");
-						toast.error(result.error || "Export failed");
+						setExportError(result.error || tEditor("errors.exportFailed"));
+						toast.error(result.error || tEditor("errors.exportFailed"));
 					}
 				}
 
@@ -1260,7 +1267,8 @@ export default function VideoEditor() {
 				}
 			} catch (error) {
 				console.error("Export error:", error);
-				const errorMessage = error instanceof Error ? error.message : "Unknown error";
+				const errorMessage =
+					error instanceof Error ? error.message : tEditor("errors.unknownError");
 				setExportError(errorMessage);
 				toast.error(`Export failed: ${errorMessage}`);
 			} finally {
@@ -1292,18 +1300,19 @@ export default function VideoEditor() {
 			webcamPosition,
 			exportQuality,
 			handleExportSaved,
+			tEditor,
 		],
 	);
 
 	const handleOpenExportDialog = useCallback(() => {
 		if (!videoPath) {
-			toast.error("No video loaded");
+			toast.error(tEditor("errors.noVideoLoaded"));
 			return;
 		}
 
 		const video = videoPlaybackRef.current?.video;
 		if (!video) {
-			toast.error("Video not ready");
+			toast.error(tEditor("errors.videoNotReady"));
 			return;
 		}
 
@@ -1353,19 +1362,20 @@ export default function VideoEditor() {
 		aspectRatio,
 		cropRegion,
 		handleExport,
+		tEditor,
 	]);
 
 	const handleCancelExport = useCallback(() => {
 		if (exporterRef.current) {
 			exporterRef.current.cancel();
-			toast.info("Export canceled");
+			toast.info(tEditor("export.canceled"));
 			setShowExportDialog(false);
 			setIsExporting(false);
 			setExportProgress(null);
 			setExportError(null);
 			setExportedFilePath(null);
 		}
-	}, []);
+	}, [tEditor]);
 
 	if (loading) {
 		return (
@@ -1382,7 +1392,7 @@ export default function VideoEditor() {
 					<button
 						type="button"
 						onClick={handleLoadProject}
-						className="px-3 py-1.5 rounded-md bg-[#34B27B] text-white text-sm hover:bg-[#34B27B]/90"
+						className="px-3 py-1.5 rounded-md bg-[#4A90E2] text-white text-sm hover:bg-[#4A90E2]/90"
 					>
 						Load Project File
 					</button>
@@ -1392,9 +1402,9 @@ export default function VideoEditor() {
 	}
 
 	return (
-		<div className="flex flex-col h-screen bg-[#09090b] text-slate-200 overflow-hidden selection:bg-[#34B27B]/30">
+		<div className="flex flex-col h-screen bg-[#08090d] text-slate-200 overflow-hidden selection:bg-[#4A90E2]/30">
 			<div
-				className="h-10 flex-shrink-0 bg-[#09090b]/80 backdrop-blur-md border-b border-white/5 flex items-center justify-between px-6 z-50"
+				className="h-10 flex-shrink-0 bg-[#0c0d14]/90 backdrop-blur-md border-b border-[#4A90E2]/10 flex items-center justify-between px-6 z-50"
 				style={{ WebkitAppRegion: "drag" } as React.CSSProperties}
 			>
 				<div

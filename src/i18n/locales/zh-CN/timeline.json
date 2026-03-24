@@ -1,50 +1,52 @@
 {
 	"buttons": {
 		"addZoom": "添加缩放 (Z)",
-		"suggestZooms": "根据光标建议缩放",
-		"addTrim": "添加剪辑 (T)",
+		"suggestZooms": "智能缩放建议",
+		"addTrim": "添加裁剪 (T)",
 		"addAnnotation": "添加标注 (A)",
-		"addSpeed": "添加速度 (S)"
+		"addSpeed": "添加变速 (S)"
 	},
 	"hints": {
 		"pressZoom": "按 Z 添加缩放",
-		"pressTrim": "按 T 添加剪辑",
+		"pressTrim": "按 T 添加裁剪",
 		"pressAnnotation": "按 A 添加标注",
-		"pressSpeed": "按 S 添加速度"
+		"pressSpeed": "按 S 添加变速",
+		"scrollToPan": "滚动平移",
+		"scrollToZoom": "缩放时间轴"
 	},
 	"labels": {
 		"pan": "平移",
 		"zoom": "缩放",
 		"zoomItem": "缩放 {{index}}",
-		"trimItem": "剪辑 {{index}}",
-		"speedItem": "速度 {{index}}",
+		"trimItem": "裁剪 {{index}}",
+		"speedItem": "变速 {{index}}",
 		"annotationItem": "标注",
 		"imageItem": "图片",
 		"emptyText": "空文本"
 	},
 	"emptyState": {
-		"noVideo": "未加载视频",
-		"dragAndDrop": "拖放视频以开始编辑"
+		"noVideo": "还没有视频",
+		"dragAndDrop": "拖入视频文件即可开始编辑"
 	},
 	"errors": {
-		"cannotPlaceZoom": "无法在此处放置缩放",
-		"zoomExistsAtLocation": "此位置已存在缩放或没有足够的空间。",
-		"zoomSuggestionUnavailable": "缩放建议处理器不可用",
-		"noCursorTelemetry": "无可用的光标遥测数据",
-		"noCursorTelemetryDescription": "请先录制一段屏幕录像以生成基于光标的建议。",
-		"noUsableTelemetry": "无可用的光标遥测数据",
-		"noUsableTelemetryDescription": "录制内容没有包含足够的光标移动数据。",
-		"noDwellMoments": "未找到明确的光标停留时刻",
-		"noDwellMomentsDescription": "请尝试在重要操作上进行较慢光标停留的录制。",
-		"noAutoZoomSlots": "无可用的自动缩放位置",
-		"noAutoZoomSlotsDescription": "检测到的停留点与现有缩放区域重叠。",
-		"cannotPlaceTrim": "无法在此处放置剪辑",
-		"trimExistsAtLocation": "此位置已存在剪辑或没有足够的空间。",
-		"cannotPlaceSpeed": "无法在此处放置速度",
-		"speedExistsAtLocation": "此位置已存在速度区域或没有足够的空间。"
+		"cannotPlaceZoom": "此处无法添加缩放",
+		"zoomExistsAtLocation": "该位置已有缩放效果，或空间不足。",
+		"zoomSuggestionUnavailable": "缩放建议功能暂不可用",
+		"noCursorTelemetry": "没有光标轨迹数据",
+		"noCursorTelemetryDescription": "请先录制一段屏幕视频，才能生成智能缩放建议。",
+		"noUsableTelemetry": "光标轨迹数据不足",
+		"noUsableTelemetryDescription": "录制内容中的光标移动不够多，无法生成建议。",
+		"noDwellMoments": "未检测到光标停顿点",
+		"noDwellMomentsDescription": "试试在操作重点区域放慢光标速度再录制一次。",
+		"noAutoZoomSlots": "没有可用的缩放位置",
+		"noAutoZoomSlotsDescription": "检测到的停顿点与已有缩放区域重叠了。",
+		"cannotPlaceTrim": "此处无法添加裁剪",
+		"trimExistsAtLocation": "该位置已有裁剪标记，或空间不足。",
+		"cannotPlaceSpeed": "此处无法添加变速",
+		"speedExistsAtLocation": "该位置已有变速区域，或空间不足。"
 	},
 	"success": {
-		"addedZoomSuggestions": "已添加 {{count}} 个基于光标的缩放建议",
-		"addedZoomSuggestionsPlural": "已添加 {{count}} 个基于光标的缩放建议"
+		"addedZoomSuggestions": "已添加 {{count}} 个智能缩放建议",
+		"addedZoomSuggestionsPlural": "已添加 {{count}} 个智能缩放建议"
 	}
 }

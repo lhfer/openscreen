@@ -1,29 +1,29 @@
 {
 	"tooltips": {
-		"hideHUD": "隐藏控制面板",
-		"closeApp": "关闭应用",
-		"restartRecording": "重新开始录制",
+		"hideHUD": "隐藏控制栏",
+		"closeApp": "退出",
+		"restartRecording": "重新录制",
 		"openVideoFile": "打开视频文件",
 		"openProject": "打开项目"
 	},
 	"audio": {
-		"enableSystemAudio": "启用系统音频",
-		"disableSystemAudio": "禁用系统音频",
-		"enableMicrophone": "启用麦克风",
-		"disableMicrophone": "禁用麦克风"
+		"enableSystemAudio": "开启系统声音",
+		"disableSystemAudio": "关闭系统声音",
+		"enableMicrophone": "开启麦克风",
+		"disableMicrophone": "关闭麦克风"
 	},
 	"webcam": {
-		"enableWebcam": "启用摄像头",
-		"disableWebcam": "禁用摄像头"
+		"enableWebcam": "开启摄像头",
+		"disableWebcam": "关闭摄像头"
 	},
 	"sourceSelector": {
-		"loading": "正在加载源...",
+		"loading": "正在加载…",
 		"screens": "屏幕 ({{count}})",
 		"windows": "窗口 ({{count}})",
 		"defaultSourceName": "屏幕"
 	},
 	"recording": {
-		"selectSource": "请选择要录制的源"
+		"selectSource": "请先选择录制源"
 	},
 	"language": "语言"
 }

@@ -27,10 +27,9 @@
 		"triggerLabel": "Cómo funciona el recorte",
 		"title": "Cómo funciona el recorte",
 		"description": "Aprende a eliminar las partes no deseadas de tu video.",
-		"explanation": "La herramienta de recorte funciona definiendo los segmentos que deseas",
+		"explanation": "La herramienta de recorte funciona definiendo los segmentos que deseas ",
 		"explanationRemove": "eliminar",
-		"explanationCovered": "cubierto",
-		"explanationEnd": "por un segmento rojo de recorte será eliminado al exportar.",
+		"explanationEnd": ". Las partes cubiertas por un segmento rojo serán eliminadas al exportar.",
 		"visualExample": "Ejemplo visual",
 		"removed": "ELIMINADO",
 		"kept": "Conservado",
@@ -57,12 +56,12 @@
 		"saveGif": "Guardar GIF exportado",
 		"saveVideo": "Guardar video exportado",
 		"selectVideo": "Seleccionar archivo de video",
-		"saveProject": "Guardar proyecto OpenScreen",
-		"openProject": "Abrir proyecto OpenScreen",
+		"saveProject": "Guardar proyecto ScreenCut",
+		"openProject": "Abrir proyecto ScreenCut",
 		"gifImage": "Imagen GIF",
 		"mp4Video": "Video MP4",
 		"videoFiles": "Archivos de video",
-		"openscreenProject": "Proyecto OpenScreen",
+		"openscreenProject": "Proyecto ScreenCut",
 		"allFiles": "Todos los archivos"
 	}
 }

@@ -1192,7 +1192,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 					>
 						<div
 							ref={focusIndicatorRef}
-							className="absolute rounded-md border border-[#34B27B]/80 bg-[#34B27B]/20 shadow-[0_0_0_1px_rgba(52,178,123,0.35)]"
+							className="absolute rounded-md border border-[#4A90E2]/80 bg-[#4A90E2]/20 shadow-[0_0_0_1px_rgba(52,178,123,0.35)]"
 							style={{ display: "none", pointerEvents: "none" }}
 						/>
 						{(() => {
@@ -1252,7 +1252,7 @@ const VideoPlayback = forwardRef<VideoPlaybackRef, VideoPlaybackProps>(
 					onDurationChange={(e) => {
 						onDurationChange(e.currentTarget.duration);
 					}}
-					onError={() => onError("Failed to load video")}
+					onError={() => onError("视频加载失败")}
 				/>
 			</div>
 		);

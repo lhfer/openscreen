@@ -28,7 +28,7 @@
 }
 
 .selected {
-	border: 2px solid #34b27b;
+	border: 2px solid #4A90E2;
 	background: linear-gradient(120deg, rgba(52, 178, 123, 0.08) 0%, rgba(38, 38, 48, 0.98) 100%);
 	box-shadow:
 		0 0 12px rgba(52, 178, 123, 0.15),
@@ -61,7 +61,7 @@
 .checkBadge {
 	width: 18px;
 	height: 18px;
-	background: #34b27b;
+	background: #4A90E2;
 	border-radius: 9999px;
 	display: flex;
 	align-items: center;

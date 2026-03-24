@@ -10,11 +10,20 @@
 		"exportFailedWithError": "La exportación falló: {{error}}",
 		"failedToSaveExport": "Error al guardar la exportación",
 		"failedToSaveExportedVideo": "Error al guardar el video exportado",
-		"failedToRevealInFolder": "Error al mostrar en la carpeta: {{error}}"
+		"failedToRevealInFolder": "Error al mostrar en la carpeta: {{error}}",
+		"failedToLoadProject": "Error al cargar el proyecto",
+		"failedToLoadVideo": "Error al cargar el video",
+		"invalidProjectFormat": "Formato de proyecto inválido",
+		"unknownError": "Error desconocido"
 	},
 	"export": {
 		"canceled": "Exportación cancelada",
-		"exportedSuccessfully": "{{format}} exportado exitosamente"
+		"exportedSuccessfully": "{{format}} exportado exitosamente",
+		"showInFolder": "Mostrar en carpeta"
+	},
+	"formats": {
+		"gif": "GIF",
+		"video": "Video"
 	},
 	"project": {
 		"saveCanceled": "Guardado de proyecto cancelado",
@@ -23,6 +32,10 @@
 		"failedToLoad": "Error al cargar el proyecto",
 		"invalidFormat": "Formato de archivo de proyecto no válido",
 		"loadedFrom": "Proyecto cargado desde {{path}}"
+	},
+	"tray": {
+		"appName": "ScreenCut",
+		"recording": "Grabando: {{source}}"
 	},
 	"recording": {
 		"failedCameraAccess": "Error al solicitar acceso a la cámara.",

@@ -28,6 +28,7 @@ export function ExportDialog({
 	onShowInFolder,
 }: ExportDialogProps) {
 	const t = useScopedT("dialogs");
+	const tEditor = useScopedT("editor");
 	const [showSuccess, setShowSuccess] = useState(false);
 
 	// Reset showSuccess when a new export starts or dialog reopens
@@ -50,14 +51,14 @@ export function ExportDialog({
 			const timer = setTimeout(() => {
 				setShowSuccess(false);
 				onClose();
-			}, 2000);
+			}, 3500);
 			return () => clearTimeout(timer);
 		}
 	}, [isExporting, progress, error, onClose]);
 
 	if (!isOpen) return null;
 
-	const formatLabel = exportFormat === "gif" ? "GIF" : "Video";
+	const formatLabel = exportFormat === "gif" ? tEditor("formats.gif") : tEditor("formats.video");
 
 	// Determine if we're in the compiling phase (frames done but still exporting)
 	const isCompiling =
@@ -99,8 +100,8 @@ export function ExportDialog({
 					<div className="flex items-center gap-4">
 						{showSuccess ? (
 							<>
-								<div className="w-12 h-12 rounded-full bg-[#34B27B]/20 flex items-center justify-center ring-1 ring-[#34B27B]/50">
-									<Download className="w-6 h-6 text-[#34B27B]" />
+								<div className="w-12 h-12 rounded-full bg-[#4A90E2]/20 flex items-center justify-center ring-1 ring-[#4A90E2]/50 animate-in zoom-in-50 duration-300">
+									<Download className="w-6 h-6 text-[#4A90E2]" />
 								</div>
 								<div className="flex flex-col gap-2">
 									<span className="text-xl font-bold text-slate-200 block">
@@ -128,8 +129,8 @@ export function ExportDialog({
 						) : (
 							<>
 								{isExporting ? (
-									<div className="w-12 h-12 rounded-full bg-[#34B27B]/10 flex items-center justify-center">
-										<Loader2 className="w-6 h-6 text-[#34B27B] animate-spin" />
+									<div className="w-12 h-12 rounded-full bg-[#4A90E2]/10 flex items-center justify-center">
+										<Loader2 className="w-6 h-6 text-[#4A90E2] animate-spin" />
 									</div>
 								) : (
 									<div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
@@ -195,13 +196,13 @@ export function ExportDialog({
 									// Show render progress if available, otherwise animated indeterminate bar
 									renderProgress !== undefined && renderProgress > 0 ? (
 										<div
-											className="h-full bg-[#34B27B] shadow-[0_0_10px_rgba(52,178,123,0.3)] transition-all duration-300 ease-out"
+											className="h-full bg-[#4A90E2] shadow-[0_0_10px_rgba(52,178,123,0.3)] transition-all duration-300 ease-out"
 											style={{ width: `${renderProgress}%` }}
 										/>
 									) : (
 										<div className="h-full w-full relative overflow-hidden">
 											<div
-												className="absolute h-full w-1/3 bg-[#34B27B] shadow-[0_0_10px_rgba(52,178,123,0.3)]"
+												className="absolute h-full w-1/3 bg-[#4A90E2] shadow-[0_0_10px_rgba(52,178,123,0.3)]"
 												style={{
 													animation: "indeterminate 1.5s ease-in-out infinite",
 												}}
@@ -216,7 +217,7 @@ export function ExportDialog({
 									)
 								) : (
 									<div
-										className="h-full bg-[#34B27B] shadow-[0_0_10px_rgba(52,178,123,0.3)] transition-all duration-300 ease-out"
+										className="h-full bg-[#4A90E2] shadow-[0_0_10px_rgba(52,178,123,0.3)] transition-all duration-300 ease-out"
 										style={{ width: `${Math.min(progress.percentage, 100)}%` }}
 									/>
 								)}

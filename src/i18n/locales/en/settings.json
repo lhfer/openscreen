@@ -63,7 +63,10 @@
 	"gifSettings": {
 		"frameRate": "GIF Frame Rate",
 		"size": "GIF Size",
-		"loop": "Loop GIF"
+		"loop": "Loop GIF",
+		"sizeOriginal": "Orig",
+		"sizeMedium": "Med",
+		"sizeSmall": "Sm"
 	},
 	"project": {
 		"save": "Save Project",
@@ -115,7 +118,14 @@
 		"invalidImageType": "Invalid file type",
 		"imageFormatsOnly": "Please upload a JPG, PNG, GIF, or WebP image file.",
 		"imageUploadSuccess": "Image uploaded successfully!",
-		"failedImageUpload": "Failed to upload image"
+		"failedImageUpload": "Failed to upload image",
+		"toggleBold": "Toggle bold",
+		"toggleItalic": "Toggle italic",
+		"toggleUnderline": "Toggle underline",
+		"alignLeft": "Align left",
+		"alignCenter": "Align center",
+		"alignRight": "Align right",
+		"uploadedImageAlt": "Uploaded annotation image"
 	},
 	"fontStyles": {
 		"classic": "Classic",
