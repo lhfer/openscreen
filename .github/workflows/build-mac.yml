@@ -54,6 +54,7 @@ jobs:
         run: |
           CSC_IDENTITY_AUTO_DISCOVERY=false \
           npm run build:mac -- \
+            --publish never \
             --config.mac.identity=null \
             --config.mac.hardenedRuntime=false \
             --config.mac.notarize=false
