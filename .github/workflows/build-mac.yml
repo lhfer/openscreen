@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -28,53 +28,93 @@ jobs:
         run: |
           KEYCHAIN_PATH=$RUNNER_TEMP/build.keychain-db
           KEYCHAIN_PASSWORD="ci_build_$(date +%s)"
-          
-          # Decode certificate
+
           echo "$CERTIFICATE_BASE64" | base64 --decode > $RUNNER_TEMP/certificate.p12
-          
-          # Create and configure keychain
+
           security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
           security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          
-          # Import certificate
+
           security import $RUNNER_TEMP/certificate.p12 -k $KEYCHAIN_PATH \
             -P "$CERTIFICATE_PASSWORD" \
             -T /usr/bin/codesign \
-            -T /usr/bin/security \
-            -T /usr/bin/productbuild
-          
-          # Allow codesign to access keychain without prompt
+            -T /usr/bin/security
+
           security set-key-partition-list -S apple-tool:,apple:,codesign: \
             -s -k "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          
-          # Add to search list (prepend so it's found first)
+
           security list-keychains -d user -s $KEYCHAIN_PATH $(security list-keychains -d user | tr -d '"')
-          
-          # Verify
-          echo "=== Certificates available ==="
+
+          echo "=== Certificates ==="
           security find-identity -v -p codesigning $KEYCHAIN_PATH
-          
-          # Cleanup
+
           rm -f $RUNNER_TEMP/certificate.p12
 
-      - name: Build, Sign & Notarize
+      - name: Build app without signing
+        run: |
+          CSC_IDENTITY_AUTO_DISCOVERY=false \
+          npm run build:mac -- \
+            --config.mac.identity=null \
+            --config.mac.hardenedRuntime=false \
+            --config.mac.notarize=false
+
+      - name: Sign app manually
+        run: |
+          APP="release/1.0.0/mac-arm64/ScreenCut.app"
+          ID="Developer ID Application: ZHUN LI (66LRRU4PY2)"
+          ENT="build/entitlements.mac.plist"
+
+          echo "--- Signing frameworks and libraries ---"
+          find "$APP/Contents/Frameworks" -type f \( -name "*.dylib" -o -name "*.so" -o -name "*.node" \) | while read f; do
+            codesign --sign "$ID" --force --options runtime --entitlements "$ENT" "$f" 2>/dev/null || true
+          done
+
+          echo "--- Signing .framework bundles ---"
+          find "$APP/Contents/Frameworks" -name "*.framework" -maxdepth 2 | sort -r | while read f; do
+            codesign --sign "$ID" --force --deep --options runtime --entitlements "$ENT" "$f"
+          done
+
+          echo "--- Signing helper apps ---"
+          find "$APP/Contents/Frameworks" -name "*.app" | while read f; do
+            codesign --sign "$ID" --force --deep --options runtime --entitlements "$ENT" "$f"
+          done
+
+          echo "--- Signing main app ---"
+          codesign --sign "$ID" --force --deep --options runtime --entitlements "$ENT" "$APP"
+
+          echo "--- Verify ---"
+          codesign --verify --deep --strict "$APP" && echo "✅ Signing OK"
+
+      - name: Package DMG
+        run: |
+          hdiutil create -volname "ScreenCut" -srcfolder "release/1.0.0/mac-arm64/ScreenCut.app" -ov -format UDZO "release/1.0.0/ScreenCut-Mac-arm64-1.0.0.dmg"
+
+      - name: Notarize DMG
         env:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-        run: npm run build:mac
+        run: |
+          DMG="release/1.0.0/ScreenCut-Mac-arm64-1.0.0.dmg"
+          echo "Notarizing $DMG ..."
+          xcrun notarytool submit "$DMG" \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_APP_SPECIFIC_PASSWORD" \
+            --team-id "$APPLE_TEAM_ID" \
+            --wait --timeout 10m
+          xcrun stapler staple "$DMG"
+          echo "✅ Notarization complete"
 
       - name: Upload DMG
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ScreenCut-Mac
-          path: release/*/ScreenCut-Mac-*.dmg
+          path: release/**/*.dmg
           if-no-files-found: warn
 
       - name: Upload to Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
-          files: release/*/ScreenCut-Mac-*.dmg
+          files: release/**/*.dmg
