@@ -103,7 +103,15 @@ jobs:
             --password "$APPLE_APP_SPECIFIC_PASSWORD" \
             --team-id "$APPLE_TEAM_ID" \
             --wait --timeout 10m
-          xcrun stapler staple "$DMG"
+          echo "Waiting for Apple CDN sync..."
+          for i in 1 2 3 4 5; do
+            if xcrun stapler staple "$DMG" 2>/dev/null; then
+              echo "✅ Staple OK"
+              break
+            fi
+            echo "Staple attempt $i failed, retrying in 30s..."
+            sleep 30
+          done
           echo "✅ Notarization complete"
 
       - name: Upload DMG
