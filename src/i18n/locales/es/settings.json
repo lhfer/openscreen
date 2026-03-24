@@ -63,7 +63,10 @@
 	"gifSettings": {
 		"frameRate": "Velocidad de cuadros del GIF",
 		"size": "Tamaño del GIF",
-		"loop": "Repetir GIF"
+		"loop": "Repetir GIF",
+		"sizeOriginal": "Orig",
+		"sizeMedium": "Med",
+		"sizeSmall": "Peq"
 	},
 	"project": {
 		"save": "Guardar proyecto",
@@ -115,7 +118,14 @@
 		"invalidImageType": "Tipo de archivo no válido",
 		"imageFormatsOnly": "Por favor sube un archivo de imagen JPG, PNG, GIF o WebP.",
 		"imageUploadSuccess": "¡Imagen subida exitosamente!",
-		"failedImageUpload": "Error al subir la imagen"
+		"failedImageUpload": "Error al subir la imagen",
+		"toggleBold": "Alternar negrita",
+		"toggleItalic": "Alternar cursiva",
+		"toggleUnderline": "Alternar subrayado",
+		"alignLeft": "Alinear a la izquierda",
+		"alignCenter": "Centrar",
+		"alignRight": "Alinear a la derecha",
+		"uploadedImageAlt": "Imagen de anotación"
 	},
 	"fontStyles": {
 		"classic": "Clásico",

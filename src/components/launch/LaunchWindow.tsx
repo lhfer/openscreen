@@ -29,7 +29,7 @@ import { AudioLevelMeter } from "../ui/audio-level-meter";
 import { Tooltip } from "../ui/tooltip";
 import styles from "./LaunchWindow.module.css";
 
-const ICON_SIZE = 20;
+const ICON_SIZE = 22;
 
 const ICON_CONFIG = {
 	drag: { icon: RxDragHandleDots2, size: ICON_SIZE },
@@ -72,7 +72,7 @@ export function LaunchWindow() {
 
 	useEffect(() => {
 		getIsMac().then(setIsMac);
-	}, []);
+	}, [t]);
 
 	const {
 		recording,
@@ -133,7 +133,7 @@ export function LaunchWindow() {
 		});
 	}, []);
 
-	const [selectedSource, setSelectedSource] = useState("Screen");
+	const [selectedSource, setSelectedSource] = useState(t("sourceSelector.defaultSourceName"));
 	const [hasSelectedSource, setHasSelectedSource] = useState(false);
 
 	useEffect(() => {
@@ -144,7 +144,7 @@ export function LaunchWindow() {
 					setSelectedSource(source.name);
 					setHasSelectedSource(true);
 				} else {
-					setSelectedSource("Screen");
+					setSelectedSource(t("sourceSelector.defaultSourceName"));
 					setHasSelectedSource(false);
 				}
 			}
@@ -154,7 +154,7 @@ export function LaunchWindow() {
 
 		const interval = setInterval(checkSelectedSource, 500);
 		return () => clearInterval(interval);
-	}, []);
+	}, [t]);
 
 	const openSourceSelector = () => {
 		if (window.electronAPI) {
@@ -250,7 +250,7 @@ export function LaunchWindow() {
 				)}
 
 				{/* Main pill bar */}
-				<div className="flex items-center gap-1.5 px-2 py-1.5 isolate rounded-full shadow-hud-bar bg-gradient-to-br from-[rgba(28,28,36,0.97)] to-[rgba(18,18,26,0.96)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(80,80,120,0.25)]">
+				<div className="flex items-center gap-1.5 px-2 py-1.5 isolate rounded-full shadow-hud-bar bg-gradient-to-br from-[rgba(20,24,40,0.97)] to-[rgba(12,14,28,0.96)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(74,144,226,0.15)]">
 					{/* Drag handle */}
 					<div className={`flex items-center px-1 ${styles.electronDrag}`}>
 						{getIcon("drag", "text-white/30")}
@@ -272,7 +272,7 @@ export function LaunchWindow() {
 					{/* Audio controls group */}
 					<div className={`${hudGroupClasses} ${styles.electronNoDrag}`}>
 						<button
-							className={`${hudIconBtnClasses} ${systemAudioEnabled ? "drop-shadow-[0_0_4px_rgba(74,222,128,0.4)]" : ""}`}
+							className={`${hudIconBtnClasses} ${systemAudioEnabled ? "drop-shadow-[0_0_4px_rgba(74,144,226,0.4)]" : ""}`}
 							onClick={() => !recording && setSystemAudioEnabled(!systemAudioEnabled)}
 							disabled={recording}
 							title={
@@ -280,28 +280,28 @@ export function LaunchWindow() {
 							}
 						>
 							{systemAudioEnabled
-								? getIcon("volumeOn", "text-green-400")
+								? getIcon("volumeOn", "text-[#4A90E2]")
 								: getIcon("volumeOff", "text-white/40")}
 						</button>
 						<button
-							className={`${hudIconBtnClasses} ${microphoneEnabled ? "drop-shadow-[0_0_4px_rgba(74,222,128,0.4)]" : ""}`}
+							className={`${hudIconBtnClasses} ${microphoneEnabled ? "drop-shadow-[0_0_4px_rgba(74,144,226,0.4)]" : ""}`}
 							onClick={toggleMicrophone}
 							disabled={recording}
 							title={microphoneEnabled ? t("audio.disableMicrophone") : t("audio.enableMicrophone")}
 						>
 							{microphoneEnabled
-								? getIcon("micOn", "text-green-400")
+								? getIcon("micOn", "text-[#4A90E2]")
 								: getIcon("micOff", "text-white/40")}
 						</button>
 						<button
-							className={`${hudIconBtnClasses} ${webcamEnabled ? "drop-shadow-[0_0_4px_rgba(74,222,128,0.4)]" : ""}`}
+							className={`${hudIconBtnClasses} ${webcamEnabled ? "drop-shadow-[0_0_4px_rgba(74,144,226,0.4)]" : ""}`}
 							onClick={async () => {
 								await setWebcamEnabled(!webcamEnabled);
 							}}
 							title={webcamEnabled ? t("webcam.disableWebcam") : t("webcam.enableWebcam")}
 						>
 							{webcamEnabled
-								? getIcon("webcamOn", "text-green-400")
+								? getIcon("webcamOn", "text-[#4A90E2]")
 								: getIcon("webcamOff", "text-white/40")}
 						</button>
 					</div>

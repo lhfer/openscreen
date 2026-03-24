@@ -110,7 +110,7 @@ export default function Item({
 							opacity: 0.9,
 							background: endCapColor,
 						}}
-						title="Resize left"
+						title="向左调整"
 					/>
 					<div
 						className={cn(glassStyles.zoomEndCap, glassStyles.right)}
@@ -121,7 +121,7 @@ export default function Item({
 							opacity: 0.9,
 							background: endCapColor,
 						}}
-						title="Resize right"
+						title="向右调整"
 					/>
 					{/* Content */}
 					<div className="relative z-10 flex flex-col items-center justify-center text-white/90 opacity-80 group-hover:opacity-100 transition-opacity select-none overflow-hidden">
@@ -144,7 +144,7 @@ export default function Item({
 								<>
 									<Gauge className="w-3.5 h-3.5 shrink-0" />
 									<span className="text-[11px] font-semibold tracking-tight whitespace-nowrap">
-										{speedValue !== undefined ? `${speedValue}×` : "Speed"}
+										{speedValue !== undefined ? `${speedValue}×` : "变速"}
 									</span>
 								</>
 							) : (

@@ -42,8 +42,28 @@ export default function App() {
 				);
 			default:
 				return (
-					<div className="w-full h-full bg-background text-foreground">
-						<h1>Openscreen</h1>
+					<div className="w-full h-full bg-[#0a0a0f] text-white flex flex-col items-center justify-center gap-6">
+						<div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#4A90E2] to-[#6BCF9F] flex items-center justify-center shadow-lg shadow-[#4A90E2]/20">
+							<svg
+								width="40"
+								height="40"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<circle cx="12" cy="12" r="10" />
+								<polygon points="10 8 16 12 10 16 10 8" />
+							</svg>
+						</div>
+						<div className="text-center">
+							<h1 className="text-2xl font-bold bg-gradient-to-r from-[#4A90E2] to-[#6BCF9F] bg-clip-text text-transparent">
+								ScreenCut
+							</h1>
+							<p className="text-sm text-white/40 mt-2">屏幕剪辑 — 精致录屏，轻松创作</p>
+						</div>
 					</div>
 				);
 		}

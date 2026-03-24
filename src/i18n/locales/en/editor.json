@@ -10,11 +10,16 @@
 		"exportFailedWithError": "Export failed: {{error}}",
 		"failedToSaveExport": "Failed to save export",
 		"failedToSaveExportedVideo": "Failed to save exported video",
-		"failedToRevealInFolder": "Error revealing in folder: {{error}}"
+		"failedToRevealInFolder": "Error revealing in folder: {{error}}",
+		"failedToLoadProject": "Failed to load project",
+		"invalidProjectFormat": "Invalid project file format",
+		"failedToLoadVideo": "Failed to load video",
+		"unknownError": "Unknown error"
 	},
 	"export": {
 		"canceled": "Export canceled",
-		"exportedSuccessfully": "{{format}} exported successfully"
+		"exportedSuccessfully": "{{format}} exported successfully",
+		"showInFolder": "Show in Folder"
 	},
 	"project": {
 		"saveCanceled": "Project save canceled",
@@ -31,5 +36,13 @@
 		"microphoneDenied": "Microphone access denied. Recording will continue without audio.",
 		"cameraDenied": "Camera access denied. Recording will continue without webcam.",
 		"permissionDenied": "Recording permission denied. Please allow screen recording."
+	},
+	"tray": {
+		"appName": "ScreenCut",
+		"recording": "Recording: {{source}}"
+	},
+	"formats": {
+		"video": "Video",
+		"gif": "GIF"
 	}
 }

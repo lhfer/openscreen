@@ -1,7 +1,11 @@
 {
-	"name": "openscreen",
+	"name": "screencut",
 	"private": true,
-	"version": "1.2.0",
+	"version": "1.0.0",
+	"description": "ScreenCut 屏幕剪辑 — 精致录屏，轻松创作",
+	"author": "xiaoli",
+	"license": "MIT",
+	"homepage": "https://github.com/xiaoli/screencut",
 	"type": "module",
 	"packageManager": "npm@10.9.4",
 	"engines": {

@@ -20,7 +20,7 @@ import {
 import { mainT } from "../i18n";
 import { RECORDINGS_DIR } from "../main";
 
-const PROJECT_FILE_EXTENSION = "openscreen";
+const PROJECT_FILE_EXTENSION = "screencut";
 const SHORTCUTS_FILE = path.join(app.getPath("userData"), "shortcuts.json");
 const RECORDING_SESSION_SUFFIX = ".session.json";
 

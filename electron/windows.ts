@@ -90,7 +90,7 @@ export function createEditorWindow(): BrowserWindow {
 		resizable: true,
 		alwaysOnTop: false,
 		skipTaskbar: false,
-		title: "OpenScreen",
+		title: "ScreenCut",
 		backgroundColor: "#000000",
 		show: !HEADLESS,
 		webPreferences: {
@@ -131,6 +131,7 @@ export function createSourceSelectorWindow(): BrowserWindow {
 		x: Math.round((width - 620) / 2),
 		y: Math.round((height - 420) / 2),
 		frame: false,
+		movable: true,
 		resizable: false,
 		alwaysOnTop: true,
 		transparent: true,

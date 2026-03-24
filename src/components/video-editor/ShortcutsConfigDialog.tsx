@@ -72,7 +72,7 @@ export function ShortcutsConfigDialog() {
 			setCaptureFor(null);
 
 			if (found?.type === "fixed") {
-				toast.error(t("reservedShortcut", { label: found.label }));
+				toast.error(t("reservedShortcut", { label: t(`fixedActions.${found.label}`) }));
 				return;
 			}
 
@@ -129,7 +129,7 @@ export function ShortcutsConfigDialog() {
 			<DialogContent className="bg-[#09090b] border-white/10 text-white max-w-[420px]">
 				<DialogHeader>
 					<DialogTitle className="flex items-center gap-2 text-sm">
-						<Keyboard className="w-4 h-4 text-[#34B27B]" />
+						<Keyboard className="w-4 h-4 text-[#4A90E2]" />
 						{t("title")}
 					</DialogTitle>
 				</DialogHeader>
@@ -155,10 +155,10 @@ export function ShortcutsConfigDialog() {
 										className={[
 											"px-2 py-1 rounded text-xs font-mono border transition-all min-w-[90px] text-center select-none",
 											isCapturing
-												? "bg-[#34B27B]/20 border-[#34B27B] text-[#34B27B] animate-pulse"
+												? "bg-[#4A90E2]/20 border-[#4A90E2] text-[#4A90E2] animate-pulse"
 												: hasConflict
 													? "bg-amber-500/10 border-amber-500/50 text-amber-400"
-													: "bg-white/5 border-white/10 text-slate-200 hover:border-[#34B27B]/50 hover:text-[#34B27B] cursor-pointer",
+													: "bg-white/5 border-white/10 text-slate-200 hover:border-[#4A90E2]/50 hover:text-[#4A90E2] cursor-pointer",
 										].join(" ")}
 									>
 										{isCapturing ? t("pressKey") : formatBinding(draft[action], isMac)}
@@ -202,7 +202,7 @@ export function ShortcutsConfigDialog() {
 							key={label}
 							className="flex items-center justify-between py-1.5 px-1 border-b border-white/5 last:border-0"
 						>
-							<span className="text-sm text-slate-400">{label}</span>
+							<span className="text-sm text-slate-400">{t(`fixedActions.${label}`)}</span>
 							<kbd className="px-2 py-1 bg-white/5 border border-white/10 rounded text-xs font-mono text-slate-400 min-w-[90px] text-center">
 								{display}
 							</kbd>
@@ -228,7 +228,7 @@ export function ShortcutsConfigDialog() {
 						</Button>
 						<Button
 							size="sm"
-							className="bg-[#34B27B] hover:bg-[#2d9e6c] text-white"
+							className="bg-[#4A90E2] hover:bg-[#2d9e6c] text-white"
 							onClick={handleSave}
 						>
 							{tc("actions.save")}

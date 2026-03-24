@@ -43,9 +43,7 @@ export function GifOptionsPanel({
 		<div className="space-y-4 animate-in slide-in-from-bottom-2 duration-200">
 			{/* Frame Rate */}
 			<div className="space-y-2">
-				<label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
-					Frame Rate
-				</label>
+				<label className="text-xs font-medium text-slate-400 uppercase tracking-wider">帧率</label>
 				<Select
 					value={String(frameRate)}
 					onValueChange={(value) => onFrameRateChange(Number(value) as GifFrameRate)}
@@ -71,7 +69,7 @@ export function GifOptionsPanel({
 			{/* Size Preset */}
 			<div className="space-y-2">
 				<label className="text-xs font-medium text-slate-400 uppercase tracking-wider">
-					Output Size
+					输出尺寸
 				</label>
 				<Select
 					value={sizePreset}
@@ -94,15 +92,15 @@ export function GifOptionsPanel({
 					</SelectContent>
 				</Select>
 				<div className="text-xs text-slate-500">
-					Output: {outputDimensions.width} × {outputDimensions.height}px
+					输出：{outputDimensions.width} × {outputDimensions.height}px
 				</div>
 			</div>
 
 			{/* Loop Toggle */}
 			<div className="flex items-center justify-between py-2">
 				<div>
-					<label className="text-sm font-medium text-slate-200">Loop Animation</label>
-					<p className="text-xs text-slate-500">GIF will play continuously</p>
+					<label className="text-sm font-medium text-slate-200">循环动画</label>
+					<p className="text-xs text-slate-500">GIF 将持续循环播放</p>
 				</div>
 				<Switch checked={loop} onCheckedChange={onLoopChange} disabled={disabled} />
 			</div>

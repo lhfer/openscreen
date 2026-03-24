@@ -116,72 +116,82 @@ function setupApplicationMenu() {
 		template.push({
 			label: app.name,
 			submenu: [
-				{ role: "about" },
+				{ role: "about", label: `关于${app.name}` },
 				{ type: "separator" },
-				{ role: "services" },
+				{ role: "services", label: "服务" },
 				{ type: "separator" },
-				{ role: "hide" },
-				{ role: "hideOthers" },
-				{ role: "unhide" },
+				{ role: "hide", label: `隐藏${app.name}` },
+				{ role: "hideOthers", label: "隐藏其他" },
+				{ role: "unhide", label: "显示全部" },
 				{ type: "separator" },
-				{ role: "quit" },
+				{ role: "quit", label: `退出${app.name}` },
 			],
 		});
 	}
 
 	template.push(
 		{
-			label: mainT("common", "actions.file") || "File",
+			label: mainT("common", "actions.file") || "文件",
 			submenu: [
 				{
-					label: mainT("dialogs", "unsavedChanges.loadProject") || "Load Project…",
+					label: mainT("dialogs", "unsavedChanges.loadProject") || "打开项目…",
 					accelerator: "CmdOrCtrl+O",
 					click: () => sendEditorMenuAction("menu-load-project"),
 				},
 				{
-					label: mainT("dialogs", "unsavedChanges.saveProject") || "Save Project…",
+					label: mainT("dialogs", "unsavedChanges.saveProject") || "保存项目…",
 					accelerator: "CmdOrCtrl+S",
 					click: () => sendEditorMenuAction("menu-save-project"),
 				},
 				{
-					label: mainT("dialogs", "unsavedChanges.saveProjectAs") || "Save Project As…",
+					label: mainT("dialogs", "unsavedChanges.saveProjectAs") || "另存为…",
 					accelerator: "CmdOrCtrl+Shift+S",
 					click: () => sendEditorMenuAction("menu-save-project-as"),
 				},
-				...(isMac ? [] : [{ type: "separator" as const }, { role: "quit" as const }]),
+				...(isMac
+					? []
+					: [{ type: "separator" as const }, { role: "quit" as const, label: "退出" }]),
 			],
 		},
 		{
-			label: mainT("common", "actions.edit") || "Edit",
+			label: mainT("common", "actions.edit") || "编辑",
 			submenu: [
-				{ role: "undo" },
-				{ role: "redo" },
+				{ role: "undo", label: "撤销" },
+				{ role: "redo", label: "重做" },
 				{ type: "separator" },
-				{ role: "cut" },
-				{ role: "copy" },
-				{ role: "paste" },
-				{ role: "selectAll" },
+				{ role: "cut", label: "剪切" },
+				{ role: "copy", label: "复制" },
+				{ role: "paste", label: "粘贴" },
+				{ role: "selectAll", label: "全选" },
 			],
 		},
 		{
-			label: mainT("common", "actions.view") || "View",
+			label: mainT("common", "actions.view") || "视图",
 			submenu: [
-				{ role: "reload" },
-				{ role: "forceReload" },
-				{ role: "toggleDevTools" },
+				{ role: "reload", label: "重新加载" },
+				{ role: "forceReload", label: "强制重新加载" },
+				{ role: "toggleDevTools", label: "开发者工具" },
 				{ type: "separator" },
-				{ role: "resetZoom" },
-				{ role: "zoomIn" },
-				{ role: "zoomOut" },
+				{ role: "resetZoom", label: "重置缩放" },
+				{ role: "zoomIn", label: "放大" },
+				{ role: "zoomOut", label: "缩小" },
 				{ type: "separator" },
-				{ role: "togglefullscreen" },
+				{ role: "togglefullscreen", label: "切换全屏" },
 			],
 		},
 		{
-			label: mainT("common", "actions.window") || "Window",
+			label: mainT("common", "actions.window") || "窗口",
 			submenu: isMac
-				? [{ role: "minimize" }, { role: "zoom" }, { type: "separator" }, { role: "front" }]
-				: [{ role: "minimize" }, { role: "close" }],
+				? [
+						{ role: "minimize", label: "最小化" },
+						{ role: "zoom", label: "缩放" },
+						{ type: "separator" },
+						{ role: "front", label: "全部置于前面" },
+					]
+				: [
+						{ role: "minimize", label: "最小化" },
+						{ role: "close", label: "关闭" },
+					],
 		},
 	);
 
@@ -212,7 +222,9 @@ function getTrayIcon(filename: string) {
 function updateTrayMenu(recording: boolean = false) {
 	if (!tray) return;
 	const trayIcon = recording ? recordingTrayIcon : defaultTrayIcon;
-	const trayToolTip = recording ? `Recording: ${selectedSourceName}` : "OpenScreen";
+	const trayToolTip = recording
+		? mainT("editor", "tray.recording", { source: selectedSourceName })
+		: mainT("editor", "tray.appName");
 	const menuTemplate = recording
 		? [
 				{
